@@ -1,0 +1,57 @@
+﻿// ConsoleApp.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
+//
+
+#include "pch.h"
+#include "framework.h"
+#include "ConsoleApp.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
+#include "CommandArgs.h"
+
+// 唯一のアプリケーション オブジェクトです
+
+CWinApp theApp;
+
+using namespace std;
+
+int main()
+{
+    int nRetCode = 0;
+
+    HMODULE hModule = ::GetModuleHandle(nullptr);
+
+    if (hModule != nullptr)
+    {
+        TCHAR* lpCommandLine = ::GetCommandLine();
+
+        CCommandArgs commandArgs(lpCommandLine);
+
+        // MFC を初期化して、エラーの場合は結果を出力する
+        if (!AfxWinInit(hModule, nullptr, lpCommandLine, 0))
+        {
+            // TODO: アプリケーションの動作を記述するコードをここに挿入してください。
+            wprintf(L"致命的なエラー: MFC の初期化が失敗しました\n");
+            nRetCode = 1;
+        }
+        else
+        {
+            // TODO: アプリケーションの動作を記述するコードをここに挿入してください。
+        }
+    }
+    else
+    {
+        // TODO: 必要に応じてエラー コードを変更してください
+        wprintf(L"致命的なエラー: GetModuleHandle が失敗しました\n");
+        nRetCode = 1;
+    }
+
+    return nRetCode;
+}
+
+int DoCommand()
+{
+    return 0;
+}
